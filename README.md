@@ -21,9 +21,10 @@ A simple n8n workflow that sends me a daily FreeCodeCamp update — keeping my l
 
 ---
 
-## 📸 Workflow Preview
-[![Workflow Screenshot](./screenshots/flow.png)](https://raw.githubusercontent.com/jarrealden/n8n-freecodecamp-daily-email/main/RSS%20to%20Email.png
-)
+<h2>🧩 Workflow Preview</h2>
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jarrealden/n8n-freecodecamp-daily-email/main/RSS%20to%20Email.png" alt="Workflow Screenshot" width="600">
+</p>
 
 ---
 
