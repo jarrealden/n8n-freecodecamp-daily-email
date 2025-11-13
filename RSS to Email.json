@@ -1,0 +1,122 @@
+{
+  "name": "RSS to Email",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 9
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "fb5abb50-422c-41e0-a604-a05f43145c70",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "https://www.freecodecamp.org/news/rss/",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.rssFeedRead",
+      "typeVersion": 1.2,
+      "position": [
+        224,
+        0
+      ],
+      "id": "3a76738f-8bef-4c6b-bcf2-2c1248f3ce6d",
+      "name": "RSS Read"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.slice(0, 3);"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "5a7432fe-a468-4310-a70f-0e65a8602c41",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "sendTo": "jarrealden11@gamil.com",
+        "subject": "Daily CodeCamp Updates",
+        "emailType": "text",
+        "message": "={{ $json[\"title\"] }} - {{ $json[\"link\"] }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        672,
+        0
+      ],
+      "id": "6d30c6a8-6af9-49d6-ab00-d1d26b721234",
+      "name": "Send a message",
+      "webhookId": "c5e8fedf-516d-414b-9a97-aac4a7a35928",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "Oe2n2R46qmINpHbC",
+          "name": "jarrealden11"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "RSS Read",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RSS Read": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "ec0b88e9-e67c-4ed9-ae62-b64faf456c33",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0e10aa17c613afa78fccba72908f669d4ce75d2e1a8e33a2aa35955b1a179a1b"
+  },
+  "id": "oXbxP8djYsMeO48B",
+  "tags": []
+}
